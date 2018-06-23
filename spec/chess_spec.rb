@@ -47,3 +47,51 @@ describe 'knight' do
     expect(knight.moves).to be_kind_of(Array)
   end
 end
+
+describe 'bishop' do
+  let(:bishop) { Bishop.new(['c', 1]) }
+
+  it 'creates a instance of a bishop' do
+    expect(bishop).to be_instance_of(Bishop)
+  end
+
+  it 'has a position' do
+    expect(bishop.position).to eq ['c', 1]
+  end
+
+  it 'has moves' do
+    expect(bishop.moves).to be_kind_of(Array)
+  end
+end
+
+describe 'queen' do
+  let(:queen) { Queen.new(['d', 1]) }
+
+  it 'creates a instance of a queen' do
+    expect(queen).to be_instance_of(Queen)
+  end
+
+  it 'has a position' do
+    expect(queen.position).to eq ['d', 1]
+  end
+
+  it 'has moves' do
+    expect(queen.moves).to be_kind_of(Array)
+  end
+end
+
+describe 'king' do
+  let(:king) { King.new(['e', 1]) }
+
+  it 'creates a instance of a king' do
+    expect(king).to be_instance_of(King)
+  end
+
+  it 'has a position' do
+    expect(king.position).to eq ['e', 1]
+  end
+
+  it 'has moves' do
+    expect(king.moves).to be_kind_of(Array)
+  end
+end

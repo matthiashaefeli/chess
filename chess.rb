@@ -45,3 +45,47 @@ class Knight < Figure
     ]
   end
 end
+
+class Bishop < Figure
+  def initialize(position)
+    super
+    @moves = [
+      [1, 1],
+      [1, -1],
+      [-1, 1],
+      [-1, -1]
+    ]
+  end
+end
+
+class Queen < Figure
+  def initialize(position)
+    super
+    @moves = [
+      [1, 0],
+      [1, 1],
+      [0, 1],
+      [0, -1],
+      [1, -1],
+      [-1, 1],
+      [-1, -1],
+      [-1, 0]
+    ]
+  end
+end
+
+class King < Figure
+  def initialize(position)
+    super
+    @moves = [
+      [1, 0],
+      [1, 1],
+      [1, -1],
+      [0, 1],
+      [0, -1],
+      [-1, 1],
+      [-1, -1],
+      [-1, 0]
+    ]
+  end
+end
