@@ -27,6 +27,7 @@ end
 
 describe 'rook' do
   let(:rook) { Rook.new([1, 'a']) }
+  let(:rooktwo) { Rook.new([4, 'd']) }
 
   it 'creates a instance of a rook' do
     expect(rook).to be_instance_of(Rook)
@@ -39,11 +40,19 @@ describe 'rook' do
   it 'has moves' do
     expect(rook.moves).to be_kind_of(Array)
   end
+
   it 'returns next posible moves' do
     expect(rook.next_moves).to eq [[2, 'a'], [3, 'a'], [4, 'a'], [5, 'a'],
                                    [6, 'a'], [7, 'a'], [8, 'a'], [1, 'b'],
                                    [1, 'c'], [1, 'd'], [1, 'e'], [1, 'f'],
                                    [1, 'g'], [1, 'h']]
+  end
+
+  it 'returns next possible moves' do
+    expect(rooktwo.next_moves).to eq [[5, 'd'], [6, 'd'], [7, 'd'], [8, 'd'],
+                                      [4, 'e'], [4, 'f'], [4, 'g'], [4, 'h'],
+                                      [3, 'd'], [2, 'd'], [1, 'd'],
+                                      [4, 'c'], [4, 'b'], [4, 'a']]
   end
 end
 

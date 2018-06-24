@@ -1,3 +1,4 @@
+# class Figure
 class Figure
   attr_reader :moves
 
@@ -12,6 +13,7 @@ class Figure
   end
 end
 
+# class Pawn inherits from Figure
 class Pawn < Figure
   def initialize(position)
     super
@@ -28,6 +30,7 @@ class Pawn < Figure
   end
 end
 
+# class Rook inherits from Figure
 class Rook < Figure
   def initialize(position)
     super
@@ -40,22 +43,52 @@ class Rook < Figure
   end
 
   def next_moves
-    get_moves_x(position)
+    [get_moves_x_plus(position),
+     get_moves_y_plus(position),
+     get_moves_x_minus(position),
+     get_moves_y_minus(position)].reduce([], :concat)
   end
 
-  def get_moves_x(pos, posibles_positions = [])
+  def get_moves_x_plus(pos, posibles_positions = [])
     new_position = [(pos[0] + 1), pos[1]]
     if @board.include_square(new_position)
       posibles_positions.push(new_position)
-      get_moves_x(new_position, posibles_positions)
+      get_moves_x_plus(new_position, posibles_positions)
     end
     posibles_positions
   end
 
-  def get_moves_y(pos, posibles_positions = [])
-    new_position = [pos[0], ]
+  def get_moves_y_plus(pos, posibles_positions = [])
+    letter = pos[1]
+    new_position = [pos[0], (letter.ord + 1).chr]
+    if @board.include_square(new_position)
+      posibles_positions.push(new_position)
+      get_moves_y_plus(new_position, posibles_positions)
+    end
+    posibles_positions
+  end
+
+  def get_moves_x_minus(pos, posibles_positions = [])
+    new_position = [(pos[0] - 1), pos[1]]
+    if @board.include_square(new_position)
+      posibles_positions.push(new_position)
+      get_moves_x_minus(new_position, posibles_positions)
+    end
+    posibles_positions
+  end
+
+  def get_moves_y_minus(pos, posibles_positions = [])
+    letter = pos[1]
+    new_position = [pos[0], (letter.ord - 1).chr]
+    if @board.include_square(new_position)
+      posibles_positions.push(new_position)
+      get_moves_y_minus(new_position, posibles_positions)
+    end
+    posibles_positions
+  end
 end
 
+# class Knight inherits from Figure
 class Knight < Figure
   def initialize(position)
     super
@@ -72,6 +105,7 @@ class Knight < Figure
   end
 end
 
+# class Bishop inherits from Figure
 class Bishop < Figure
   def initialize(position)
     super
@@ -84,6 +118,7 @@ class Bishop < Figure
   end
 end
 
+# class Queen inherits from Figure
 class Queen < Figure
   def initialize(position)
     super
@@ -100,6 +135,7 @@ class Queen < Figure
   end
 end
 
+# class King inherits from Figure
 class King < Figure
   def initialize(position)
     super
@@ -116,6 +152,7 @@ class King < Figure
   end
 end
 
+# class Board to build a board
 class Board
   def initialize
     @squares = []
