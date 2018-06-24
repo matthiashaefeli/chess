@@ -14,7 +14,17 @@ end
 class Pawn < Figure
   def initialize(position)
     super
+    @board = Board.new
     @moves = [[1, 0]]
+  end
+
+  def next_moves
+    next_positions = []
+    @moves.each do |move|
+      pos = [(move[0] + @x), @y]
+      next_positions.push(pos) if @board.include_square(pos)
+    end
+    next_positions
   end
 end
 
@@ -87,5 +97,26 @@ class King < Figure
       [-1, -1],
       [-1, 0]
     ]
+  end
+end
+
+class Board
+  def initialize
+    @squares = []
+    ('a'..'h').to_a.each do |letter|
+      number = 1
+      until number > 8
+        @squares.push([number, letter])
+        number += 1
+      end
+    end
+  end
+
+  def all_squares
+    @squares
+  end
+
+  def include_square(space)
+    @squares.include?(space)
   end
 end
