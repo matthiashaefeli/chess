@@ -4,6 +4,7 @@ class Figure
   def initialize(position)
     @x = position[0]
     @y = position[1]
+    @board = Board.new
   end
 
   def position
@@ -14,7 +15,6 @@ end
 class Pawn < Figure
   def initialize(position)
     super
-    @board = Board.new
     @moves = [[1, 0]]
   end
 
@@ -38,6 +38,22 @@ class Rook < Figure
       [0, -1]
     ]
   end
+
+  def next_moves
+    get_moves_x(position)
+  end
+
+  def get_moves_x(pos, posibles_positions = [])
+    new_position = [(pos[0] + 1), pos[1]]
+    if @board.include_square(new_position)
+      posibles_positions.push(new_position)
+      get_moves_x(new_position, posibles_positions)
+    end
+    posibles_positions
+  end
+
+  def get_moves_y(pos, posibles_positions = [])
+    new_position = [pos[0], ]
 end
 
 class Knight < Figure
