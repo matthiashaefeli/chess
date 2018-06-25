@@ -35,14 +35,14 @@ class Rook < Figure
   def initialize(position)
     super
     @moves = create_moves
-  end 
+  end
 
   def create_moves
     moves = []
     count = 8
-    until count == -8
+    until count == -9
       moves.push([count, 0], [0, count])
-      count = count - 1
+      count -= 1
     end
     moves
   end
@@ -57,7 +57,6 @@ class Rook < Figure
     end
     posible_moves.sort
   end
-
 end
 
 # class Knight inherits from Figure
@@ -80,7 +79,7 @@ class Knight < Figure
     posible_moves = []
     @moves.each do |move|
       new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position)
+      if @board.include_square(new_position) && new_position != position
         posible_moves.push(new_position)
       end
     end
@@ -92,12 +91,30 @@ end
 class Bishop < Figure
   def initialize(position)
     super
-    @moves = [
-      [1, 1],
-      [1, -1],
-      [-1, 1],
-      [-1, -1]
-    ]
+    @moves = create_moves
+  end
+
+  def create_moves
+    moves = []
+    count = 8
+    counttwo = -8
+    until count == -9
+      moves.push([count, count], [count, counttwo])
+      count -= 1
+      counttwo += 1
+    end
+    moves
+  end
+
+  def next_moves
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position) && new_position != position
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
   end
 end
 
@@ -105,16 +122,30 @@ end
 class Queen < Figure
   def initialize(position)
     super
-    @moves = [
-      [1, 0],
-      [1, 1],
-      [0, 1],
-      [0, -1],
-      [1, -1],
-      [-1, 1],
-      [-1, -1],
-      [-1, 0]
-    ]
+    @moves = create_moves
+  end
+
+  def create_moves
+    moves = []
+    count = 8
+    counttwo = -8
+    until count == -9
+      moves.push([count, count], [count, counttwo], [count, 0], [0, count])
+      count -= 1
+      counttwo += 1
+    end
+    moves
+  end
+
+  def next_moves
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position) && new_position != position
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
   end
 end
 
@@ -132,6 +163,17 @@ class King < Figure
       [-1, -1],
       [-1, 0]
     ]
+  end
+
+  def next_moves
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position) && new_position != position
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
   end
 end
 
