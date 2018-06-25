@@ -11,6 +11,17 @@ class Figure
   def position
     [@x, @y]
   end
+
+  def next_moves
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position) && new_position != position
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
+  end
 end
 
 # class Pawn inherits from Figure
@@ -18,15 +29,6 @@ class Pawn < Figure
   def initialize(position)
     super
     @moves = [[1, 0]]
-  end
-
-  def next_moves
-    next_positions = []
-    @moves.each do |move|
-      pos = [(move[0] + @x), @y]
-      next_positions.push(pos) if @board.include_square(pos)
-    end
-    next_positions
   end
 end
 
@@ -46,17 +48,6 @@ class Rook < Figure
     end
     moves
   end
-
-  def next_moves
-    posible_moves = []
-    @moves.each do |move|
-      new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position) && new_position != position
-        posible_moves.push(new_position)
-      end
-    end
-    posible_moves.sort
-  end
 end
 
 # class Knight inherits from Figure
@@ -73,17 +64,6 @@ class Knight < Figure
       [-2, 1],
       [-2, -1]
     ]
-  end
-
-  def next_moves
-    posible_moves = []
-    @moves.each do |move|
-      new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position) && new_position != position
-        posible_moves.push(new_position)
-      end
-    end
-    posible_moves.sort
   end
 end
 
@@ -105,17 +85,6 @@ class Bishop < Figure
     end
     moves
   end
-
-  def next_moves
-    posible_moves = []
-    @moves.each do |move|
-      new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position) && new_position != position
-        posible_moves.push(new_position)
-      end
-    end
-    posible_moves.sort
-  end
 end
 
 # class Queen inherits from Figure
@@ -136,17 +105,6 @@ class Queen < Figure
     end
     moves
   end
-
-  def next_moves
-    posible_moves = []
-    @moves.each do |move|
-      new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position) && new_position != position
-        posible_moves.push(new_position)
-      end
-    end
-    posible_moves.sort
-  end
 end
 
 # class King inherits from Figure
@@ -163,17 +121,6 @@ class King < Figure
       [-1, -1],
       [-1, 0]
     ]
-  end
-
-  def next_moves
-    posible_moves = []
-    @moves.each do |move|
-      new_position = [@x + move[0], (@y.ord + move[1]).chr]
-      if @board.include_square(new_position) && new_position != position
-        posible_moves.push(new_position)
-      end
-    end
-    posible_moves.sort
   end
 end
 
@@ -197,4 +144,52 @@ class Board
   def include_square(space)
     @squares.include?(space)
   end
+end
+
+# check if figure does exist
+def figure_exist(figure)
+  all_figures = %w[pawn rook knight bishop queen king]
+  until all_figures.include?(figure)
+    puts "I don't know the figure '#{figure}'!, please type figure again!"
+    figure = gets.chomp
+  end
+  figure
+end
+
+# convert given position in array
+def convert_position(position)
+  position = [position.split('')[0].to_i, position.split('')[1]]
+  position
+end
+
+# check if position does exist on board
+def position_exist(position)
+  position_array = convert_position(position)
+  board = Board.new
+  until board.include_square(position_array)
+    puts "The position '#{position}' does not exist, please type position again! (ex: '1a')"
+    position = gets.chomp
+    position_array = convert_position(position)
+    board = Board.new
+  end
+  position
+end
+
+# get all possible moves with given figure and position
+def get_moves(figure, position)
+  case figure.downcase
+  when 'pawn'
+    figure = Pawn.new(position)
+  when 'rook'
+    figure = Rook.new(position)
+  when 'knight'
+    figure = Knight.new(position)
+  when 'bishop'
+    figure = Bishop.new(position)
+  when 'queen'
+    figure = Queen.new(position)
+  when 'king'
+    figure = King.new(position)
+  end
+  figure.next_moves
 end
