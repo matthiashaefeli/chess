@@ -1,18 +1,18 @@
-# ** This is a Ruby application to get all possible moves for a Figure on a Chess board ** 
+##  This is a Ruby application to get all possible moves for a Figure on a Chess board 
 
-## = Requirements =
+**Requirements**
 
 This code has been run and tested on Ruby 2.5.0
 
-## = Installation =
+**Installation**
 
 No installation needed. Clone or Download the repo
 
-## = Tests =
+**Tests**
 
 To run the tests: `cd chess` -> `rspec`
 
-## = Run Application =
+**Run Application**
 
 to run the application: `cd chess` -> `ruby game.rb`
 
