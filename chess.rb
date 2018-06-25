@@ -34,58 +34,30 @@ end
 class Rook < Figure
   def initialize(position)
     super
-    @moves = [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1]
-    ]
+    @moves = create_moves
+  end 
+
+  def create_moves
+    moves = []
+    count = 8
+    until count == -8
+      moves.push([count, 0], [0, count])
+      count = count - 1
+    end
+    moves
   end
 
   def next_moves
-    [get_moves_x_plus(position),
-     get_moves_y_plus(position),
-     get_moves_x_minus(position),
-     get_moves_y_minus(position)].reduce([], :concat)
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position) && new_position != position
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
   end
 
-  def get_moves_x_plus(pos, posibles_positions = [])
-    new_position = [(pos[0] + 1), pos[1]]
-    if @board.include_square(new_position)
-      posibles_positions.push(new_position)
-      get_moves_x_plus(new_position, posibles_positions)
-    end
-    posibles_positions
-  end
-
-  def get_moves_y_plus(pos, posibles_positions = [])
-    letter = pos[1]
-    new_position = [pos[0], (letter.ord + 1).chr]
-    if @board.include_square(new_position)
-      posibles_positions.push(new_position)
-      get_moves_y_plus(new_position, posibles_positions)
-    end
-    posibles_positions
-  end
-
-  def get_moves_x_minus(pos, posibles_positions = [])
-    new_position = [(pos[0] - 1), pos[1]]
-    if @board.include_square(new_position)
-      posibles_positions.push(new_position)
-      get_moves_x_minus(new_position, posibles_positions)
-    end
-    posibles_positions
-  end
-
-  def get_moves_y_minus(pos, posibles_positions = [])
-    letter = pos[1]
-    new_position = [pos[0], (letter.ord - 1).chr]
-    if @board.include_square(new_position)
-      posibles_positions.push(new_position)
-      get_moves_y_minus(new_position, posibles_positions)
-    end
-    posibles_positions
-  end
 end
 
 # class Knight inherits from Figure
@@ -102,6 +74,17 @@ class Knight < Figure
       [-2, 1],
       [-2, -1]
     ]
+  end
+
+  def next_moves
+    posible_moves = []
+    @moves.each do |move|
+      new_position = [@x + move[0], (@y.ord + move[1]).chr]
+      if @board.include_square(new_position)
+        posible_moves.push(new_position)
+      end
+    end
+    posible_moves.sort
   end
 end
 

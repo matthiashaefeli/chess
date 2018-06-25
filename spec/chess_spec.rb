@@ -42,22 +42,25 @@ describe 'rook' do
   end
 
   it 'returns next posible moves' do
-    expect(rook.next_moves).to eq [[2, 'a'], [3, 'a'], [4, 'a'], [5, 'a'],
-                                   [6, 'a'], [7, 'a'], [8, 'a'], [1, 'b'],
-                                   [1, 'c'], [1, 'd'], [1, 'e'], [1, 'f'],
-                                   [1, 'g'], [1, 'h']]
+    expect(rook.next_moves).to eq [[1, "b"], [1, "c"], [1, "d"],
+                                   [1, "e"], [1, "f"], [1, "g"],
+                                   [1, "h"], [2, "a"], [3, "a"], 
+                                   [4, "a"], [5, "a"], [6, "a"], 
+                                   [7, "a"], [8, "a"]]
   end
 
   it 'returns next possible moves' do
-    expect(rooktwo.next_moves).to eq [[5, 'd'], [6, 'd'], [7, 'd'], [8, 'd'],
-                                      [4, 'e'], [4, 'f'], [4, 'g'], [4, 'h'],
-                                      [3, 'd'], [2, 'd'], [1, 'd'],
-                                      [4, 'c'], [4, 'b'], [4, 'a']]
+    expect(rooktwo.next_moves).to eq [[1, "d"], [2, "d"], [3, "d"],
+                                      [4, "a"], [4, "b"], [4, "c"],
+                                      [4, "e"], [4, "f"], [4, "g"],
+                                      [4, "h"], [5, "d"], [6, "d"],
+                                      [7, "d"], [8, "d"]]
   end
 end
 
 describe 'knight' do
   let(:knight) { Knight.new([1, 'b']) }
+  let(:knighttwo) { Knight.new([4, 'd']) }
 
   it 'creates a instance of a knight' do
     expect(knight).to be_instance_of(Knight)
@@ -69,6 +72,16 @@ describe 'knight' do
 
   it 'has moves' do
     expect(knight.moves).to be_kind_of(Array)
+  end
+
+  it 'returns next possible moves' do
+    expect(knight.next_moves).to eq [[2, "d"], [3, "a"], [3, "c"]]
+  end
+
+  it 'returns next possible moves' do
+    expect(knighttwo.next_moves).to eq [[2, "c"], [2, "e"], [3, "b"],
+                                        [3, "f"], [5, "b"], [5, "f"], 
+                                        [6, "c"], [6, "e"]]
   end
 end
 
