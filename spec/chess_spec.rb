@@ -204,3 +204,31 @@ describe 'board' do
     expect(board.include_square([2, 'i'])).to be false
   end
 end
+
+describe 'figure exist' do
+  it 'returns figure if given figure exist' do
+    expect(figure_exist('Pawn')).to eq 'Pawn'
+  end
+
+  it 'returns figure if given figure exist' do
+    expect(figure_exist('knight')).to eq 'knight'
+  end
+end
+
+describe 'convert position' do
+  it 'convert given position in an array' do
+    expect(convert_position('1a')).to eq [1, 'a']
+  end
+end
+
+describe 'position exist' do
+  it 'returns position if given position exist on the board' do
+    expect(position_exist('1a')).to eq '1a'
+  end
+end
+
+describe 'get moves' do
+  it 'returns all moves from a given figure and position' do
+    expect(get_moves('pawn', [1, 'a'])).to eq [[2, 'a']]
+  end
+end
