@@ -149,7 +149,7 @@ end
 # check if figure does exist
 def figure_exist(figure)
   all_figures = %w[pawn rook knight bishop queen king]
-  until all_figures.include?(figure)
+  until all_figures.include?(figure.downcase)
     puts "I don't know the figure '#{figure}'!, please type figure again!"
     figure = gets.chomp
   end
