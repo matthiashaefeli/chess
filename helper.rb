@@ -1,3 +1,11 @@
+require './figure.rb'
+require './pawn.rb'
+require './rook.rb'
+require './knight.rb'
+require './bishop.rb'
+require './queen.rb'
+require './king.rb'
+
 # check if figure does exist
 def figure_exist(figure)
   all_figures = %w[pawn rook knight bishop queen king]
