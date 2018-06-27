@@ -1,4 +1,4 @@
-##  This is a Ruby application to get all possible moves for a Figure on a Chess board 
+##  This is a Ruby application to get all possible moves for a given Figure and position on a empty Chess board. 
 
 ### Requirements
 
