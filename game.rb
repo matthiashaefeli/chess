@@ -1,4 +1,11 @@
-require './chess.rb'
+require './figure.rb'
+require './pawn.rb'
+require './rook.rb'
+require './knight.rb'
+require './bishop.rb'
+require './queen.rb'
+require './king.rb'
+require './helper.rb'
 
 puts 'Get all possible moves for a chess figure'
 puts 'Please type figure'
