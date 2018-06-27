@@ -1,7 +1,7 @@
-require './figure.rb'
+require './src/figure.rb'
 
-# class Queen inherits from Figure
-class Queen < Figure
+# class Bishop inherits from Figure
+class Bishop < Figure
   def initialize(position)
     super
     @moves = create_moves
@@ -12,7 +12,7 @@ class Queen < Figure
     count = 8
     counttwo = -8
     until count == -9
-      moves.push([count, count], [count, counttwo], [count, 0], [0, count])
+      moves.push([count, count], [count, counttwo])
       count -= 1
       counttwo += 1
     end

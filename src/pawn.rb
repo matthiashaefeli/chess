@@ -1,4 +1,4 @@
-require './figure.rb'
+require './src/figure.rb'
 
 # class Pawn inherits from Figure
 class Pawn < Figure

@@ -1,4 +1,4 @@
-require './helper.rb'
+require './src/helper.rb'
 
 # game start
 puts 'Get all possible moves for a chess figure'

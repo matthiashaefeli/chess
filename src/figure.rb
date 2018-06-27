@@ -1,4 +1,4 @@
-require './board.rb'
+require './src/board.rb'
 
 # class Figure
 class Figure
