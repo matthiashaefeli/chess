@@ -1,4 +1,4 @@
-require './figure.rb'
+require './src/figure.rb'
 
 # class King inherits from Figure
 class King < Figure

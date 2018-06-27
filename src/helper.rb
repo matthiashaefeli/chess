@@ -1,10 +1,10 @@
-require './figure.rb'
-require './pawn.rb'
-require './rook.rb'
-require './knight.rb'
-require './bishop.rb'
-require './queen.rb'
-require './king.rb'
+require './src/figure.rb'
+require './src/pawn.rb'
+require './src/rook.rb'
+require './src/knight.rb'
+require './src/bishop.rb'
+require './src/queen.rb'
+require './src/king.rb'
 
 # check if figure does exist
 def figure_exist(figure)
