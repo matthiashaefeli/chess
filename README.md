@@ -21,5 +21,7 @@ To run the tests:
 
 to run the application: 
 
-`cd chess` -> `ruby game.rb`
+`cd chess` -> `ruby chessercise.rb -piece {figure} -position position`
+
+example `ruby chessercise.rb -piece knight -position d2`
 
