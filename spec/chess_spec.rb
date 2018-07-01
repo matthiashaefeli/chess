@@ -213,12 +213,16 @@ describe 'board' do
 end
 
 describe 'figure exist' do
-  it 'returns figure if given figure exist' do
-    expect(figure_exist('Pawn')).to eq 'Pawn'
+  it 'returns true if given figure exist' do
+    expect(figure_exist('Pawn')).to be true
   end
 
-  it 'returns figure if given figure exist' do
-    expect(figure_exist('knight')).to eq 'knight'
+  it 'returns true if given figure exist' do
+    expect(figure_exist('knight')).to be true
+  end
+
+  it 'returns false if given figure does not exist' do
+    expect(figure_exist('knigt')).to be false
   end
 end
 
@@ -229,8 +233,12 @@ describe 'convert position' do
 end
 
 describe 'position exist' do
-  it 'returns position if given position exist on the board' do
-    expect(position_exist('1a')).to eq '1a'
+  it 'returns true if given position exist on the board' do
+    expect(position_exist('1a')).to be true
+  end
+
+  it 'returns false if given position does not exist on the board' do
+    expect(position_exist('1i')).to be false
   end
 end
 
