@@ -23,5 +23,5 @@ to run the application:
 
 `cd chess` -> `ruby chessercise.rb -piece {figure} -position position`
 
-example `ruby chessercise.rb -piece knight -position d2`
+Example: `ruby chessercise.rb -piece knight -position d2`
 
